@@ -2,8 +2,8 @@
 
 [![GitHub License](https://img.shields.io/github/license/pieceofcake2/webpack-encore?label=License)](LICENSE)
 [![Packagist Version](https://img.shields.io/packagist/v/pieceofcake2/webpack-encore?label=Packagist)](https://packagist.org/packages/pieceofcake2/webpack-encore)
-[![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/pieceofcake2/webpack-encore/php?logo=php&logoColor=%23FFFFFF&label=PHP&labelColor=%23777BB4&color=%23FFFFFF)](https://packagist.org/packages/pieceofcake2/webpack-encore)
-[![Packagist Dependency Version](https://img.shields.io/packagist/dependency-v/pieceofcake2/webpack-encore/cakephp/cakephp?logo=cakephp&logoColor=%23FFFFFF&label=CakePHP&labelColor=%23D33C43&color=%23FFFFFF)](https://packagist.org/packages/pieceofcake2/webpack-encore)
+![PHP](https://img.shields.io/packagist/dependency-v/pieceofcake2/webpack-encore/php?logo=php&logoColor=%23FFFFFF&label=PHP&labelColor=%23777BB4&color=%23FFFFFF)
+![CakePHP](https://img.shields.io/packagist/dependency-v/pieceofcake2/webpack-encore/pieceofcake2/cakephp?logo=cakephp&logoColor=%23FFFFFF&label=CakePHP&labelColor=%23D33C43&color=%23FFFFFF)
 [![Tests](https://img.shields.io/github/actions/workflow/status/pieceofcake2/webpack-encore/tests.yml?label=Tests)](https://github.com/pieceofcake2/webpack-encore/actions/workflows/tests.yml)
 [![Codecov](https://img.shields.io/codecov/c/gh/pieceofcake2/webpack-encore?label=Coverage)](https://codecov.io/gh/pieceofcake2/webpack-encore)
 
