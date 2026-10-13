@@ -4,19 +4,19 @@
 [![Packagist Version](https://img.shields.io/packagist/v/pieceofcake2/webpack-encore?label=Packagist)](https://packagist.org/packages/pieceofcake2/webpack-encore)
 ![PHP](https://img.shields.io/packagist/dependency-v/pieceofcake2/webpack-encore/php?logo=php&logoColor=%23FFFFFF&label=PHP&labelColor=%23777BB4&color=%23FFFFFF)
 ![CakePHP](https://img.shields.io/packagist/dependency-v/pieceofcake2/webpack-encore/pieceofcake2/cakephp?logo=cakephp&logoColor=%23FFFFFF&label=CakePHP&labelColor=%23D33C43&color=%23FFFFFF)
-[![Tests](https://img.shields.io/github/actions/workflow/status/pieceofcake2/webpack-encore/tests.yml?label=Tests)](https://github.com/pieceofcake2/webpack-encore/actions/workflows/tests.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/pieceofcake2/webpack-encore/CI.yml?label=CI)](https://github.com/pieceofcake2/webpack-encore/actions/workflows/CI.yml)
 [![Codecov](https://img.shields.io/codecov/c/gh/pieceofcake2/webpack-encore?label=Coverage)](https://codecov.io/gh/pieceofcake2/webpack-encore)
 
 This helper allows you to integrate Symfony Webpack Encore–built assets (CSS, JS, images) into a CakePHP 2 application. It reads `entrypoints.json` and `manifest.json` to resolve fingerprinted asset filenames and output proper `<link>`, `<script>`, or `<img>` tags.
 
 ## Installation
 
-0. **Install plugin**:
+1. **Install the plugin**:
    ```bash
    composer require pieceofcake2/webpack-encore
    ```
 
-1. **Build your Encore assets** (e.g., with Symfony Encore or webpack). From your project root, run:
+2. **Build your Encore assets** (e.g., with Symfony Encore or webpack). From your project root, run:
    ```bash
    npm install
    npm run encore dev
@@ -25,11 +25,6 @@ This helper allows you to integrate Symfony Webpack Encore–built assets (CSS, 
     - `webroot/build/entrypoints.json`
     - `webroot/build/manifest.json`
     - The `webroot/build/` directory containing compiled `.js`, `.css`, and image files.
-
-2. **Copy `EncoreHelper.php` into your CakePHP app** under:
-   ```text
-   app/View/Helper/EncoreHelper.php
-   ```
 
 3. **Load the helper in your controller** (e.g., `AppController`):
    ```php
@@ -192,8 +187,8 @@ In `app/View/Layouts/default.ctp`:
 ## Notes
 
 - Always rebuild your assets (run `npm run encore dev` or `npm run encore production`) after changing frontend code to update `entrypoints.json` and `manifest.json`.
-- This helper expects the paths in both JSON files to start with `/build/...`. If you use a different directory, adjust the JSON outputs or change `Configure::write('Encore.entrypointsPath', ...)` and `Configure::write('Encore.manifestPath', ...)` accordingly.
-- The helper loads and caches both JSON files once in its constructor for performance. Subsequent calls will not re-read the files.
+- This helper expects the paths in both JSON files to start with `/build/...`. If you use a different directory, adjust the JSON outputs or change `Configure::write('WebpackEncore.entrypointsPath', ...)` and `Configure::write('WebpackEncore.manifestPath', ...)` accordingly.
+- The helper reads each JSON file when an asset is first requested, and caches it for the rest of the request. Loading the helper does not require the files, but rendering an asset before the first build throws a `RuntimeException` that names the missing file.
 
 
 ## License
