@@ -18,8 +18,9 @@ class EncoreHelper extends AppHelper
     protected function stripWebrootPrefix(array $paths): array
     {
         $prefix = $this->request->webroot;
+
         return array_map(function ($path) use ($prefix) {
-            return str_starts_with($path, $prefix) ? '/'.substr($path, strlen($prefix)) : $path;
+            return str_starts_with($path, $prefix) ? '/' . substr($path, strlen($prefix)) : $path;
         }, $paths);
     }
 
@@ -46,7 +47,7 @@ class EncoreHelper extends AppHelper
     /**
      * Constructor: sets up entrypointsPath and manifestPath from Configure, or defaults.
      */
-    public function __construct(View $View, $settings = array())
+    public function __construct(View $View, $settings = [])
     {
         parent::__construct($View, $settings);
 
@@ -77,7 +78,7 @@ class EncoreHelper extends AppHelper
         }
         $json = file_get_contents($fullPath);
         $data = json_decode($json, true);
-        if (JSON_ERROR_NONE !== json_last_error() || !isset($data['entrypoints'])) {
+        if (json_last_error() !== JSON_ERROR_NONE || !isset($data['entrypoints'])) {
             throw new RuntimeException('Invalid Encore entrypoints.json format');
         }
         $this->entrypoints = $data['entrypoints'];
@@ -99,7 +100,7 @@ class EncoreHelper extends AppHelper
         }
         $json = file_get_contents($fullPath);
         $data = json_decode($json, true);
-        if (JSON_ERROR_NONE !== json_last_error() || !is_array($data)) {
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($data)) {
             throw new RuntimeException('Invalid Encore manifest.json format');
         }
         $this->manifest = $data;
@@ -107,6 +108,10 @@ class EncoreHelper extends AppHelper
 
     /**
      * Render <link> tags for the given entry's CSS files.
+     *
+     * @param string $entryName Entry name in entrypoints.json (e.g. 'app')
+     * @param array $options Additional options for HtmlHelper::css
+     * @return string|null Tags, or an empty value when appended to a view block
      */
     public function entryLinkTags(string $entryName, array $options = [])
     {
@@ -118,14 +123,19 @@ class EncoreHelper extends AppHelper
         $options = array_merge(['inline' => false], $options);
         $resolvedList = $this->entrypoints[$entryName]['css'];
         $resolvedList = $this->stripWebrootPrefix($resolvedList);
+
         return $this->Html->css(
             $resolvedList,
-            $options
+            $options,
         );
     }
 
     /**
      * Render <script> tags for the given entry's JS files.
+     *
+     * @param string $entryName Entry name in entrypoints.json (e.g. 'app')
+     * @param array $options Additional options for HtmlHelper::script
+     * @return string|null Tags, or an empty value when appended to a view block
      */
     public function entryScriptTags(string $entryName, array $options = [])
     {
@@ -138,9 +148,10 @@ class EncoreHelper extends AppHelper
         // Resolve and return all JS tags in one call
         $resolvedList = $this->entrypoints[$entryName]['js'];
         $resolvedList = $this->stripWebrootPrefix($resolvedList);
+
         return $this->Html->script(
             $resolvedList,
-            $options
+            $options,
         );
     }
 
