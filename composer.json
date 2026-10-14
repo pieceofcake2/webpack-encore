@@ -1,6 +1,6 @@
 {
     "name": "pieceofcake2/webpack-encore",
-    "description": "Symfony Webpack Encore integration for CakePHP 2",
+    "description": "View helper that loads Symfony Webpack Encore-built assets in CakePHP 2",
     "type": "cakephp-plugin",
     "keywords": ["cakephp", "cakephp2", "webpack", "webpack-encore"],
     "license": "MIT",
