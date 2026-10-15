@@ -12,6 +12,13 @@ pieceofcake2/webpack-encore integrates Symfony Webpack Encore-built assets (CSS,
 into a CakePHP 2 application. Its helper reads `entrypoints.json` and `manifest.json` to
 resolve fingerprinted asset filenames and output `<link>`, `<script>` or `<img>` tags.
 
+## Documentation
+
+- Website: https://pieceofcake2.github.io/webpack-encore/
+- Markdown: [docs/README.md](docs/README.md) (for AI tools and offline reading)
+
+The Markdown documentation is also included in the Composer package, in the plugin's directory: `plugins/WebpackEncore/docs/README.md` (the location depends on your `installer-paths`). Install the package with `--dev` if you only need it for development.
+
 ## Requirements
 
 * PHP 8.0+
@@ -25,10 +32,6 @@ composer require pieceofcake2/webpack-encore
 
 Then build your Encore assets and load the `WebpackEncore.Encore` helper.
 See [Installation](docs/README.md#installation).
-
-## Documentation
-
-Documentation: https://pieceofcake2.github.io/webpack-encore/
 
 ## Contributing
 
