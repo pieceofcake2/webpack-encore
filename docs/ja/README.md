@@ -15,7 +15,7 @@ pieceofcake2/webpack-encore は、[Symfony Webpack Encore](https://github.com/sy
 
 ## インストール
 
-1. [Composer](https://getcomposer.org/) で**プラグインをインストール**します:
+1. [Composer](https://getcomposer.org/) で**プラグインをインストール**します。
 
    ```bash
    composer require pieceofcake2/webpack-encore
@@ -23,36 +23,36 @@ pieceofcake2/webpack-encore は、[Symfony Webpack Encore](https://github.com/sy
 
    このプラグインは `cakephp-plugin` タイプなので、`composer/installers` によってプラグインディレクトリに
    インストールされます。正しい場所にインストールされるように、アプリケーションの `composer.json` で
-   `installer-paths` を設定してください:
+   `installer-paths` を設定してください。
 
    | レイアウト | `installer-paths` |
    | --- | --- |
    | モダン (`config/`, `src/`, `templates/`, `plugins/`) | `"plugins/{$name}/": ["type:cakephp-plugin"]` |
    | レガシー (`app/Config/`, `app/Plugin/`) | `"app/Plugin/{$name}/": ["type:cakephp-plugin"]` |
 
-   `config/bootstrap.php` (レガシーレイアウトでは `app/Config/bootstrap.php`) でプラグインをロードします。
-   すでに `CakePlugin::loadAll()` を使っている場合は不要です:
+   `config/bootstrap.php` (レガシーレイアウトでは `app/Config/bootstrap.php`) でプラグインを読み込みます。
+   すでに `CakePlugin::loadAll()` を使っている場合は不要です。
 
    ```php
    CakePlugin::load('WebpackEncore');
    ```
 
 2. webroot の `build/` ディレクトリ (`webroot/build/`、レガシーレイアウトでは `app/webroot/build/`) に
-   **Encore のアセットをビルド**します。プロジェクトのルートで次を実行します:
+   **Encore のアセットをビルド**します。プロジェクトのルートで次を実行します。
 
    ```bash
    npm install
    npm run encore dev
    ```
 
-   これで次のファイルが生成されます:
+   これで次のファイルが生成されます。
 
    - `webroot/build/entrypoints.json`
    - `webroot/build/manifest.json`
    - `webroot/build/` 内のコンパイル済みの `.js`、`.css`、画像ファイル
 
-3. コントローラー、例えば `src/Controller/AppController.php` (レガシーレイアウトでは
-   `app/Controller/AppController.php`) で**ヘルパーをロード**します:
+3. コントローラー、たとえば `src/Controller/AppController.php` (レガシーレイアウトでは
+   `app/Controller/AppController.php`) で**ヘルパーを読み込み**ます。
 
    ```php
    App::uses('Controller', 'Controller');
@@ -69,13 +69,13 @@ pieceofcake2/webpack-encore は、[Symfony Webpack Encore](https://github.com/sy
 
 ## 設定
 
-デフォルトでは、ヘルパーは次の場所にファイルがあることを想定しています:
+デフォルトでは、ヘルパーは次の場所にファイルがあることを想定しています。
 
 - `entrypoints.json` は `WWW_ROOT . 'build/entrypoints.json'`
 - `manifest.json` は `WWW_ROOT . 'build/manifest.json'`
 
 これらのファイルを別の場所に置く場合は、`config/bootstrap.php` (レガシーレイアウトでは
-`app/Config/bootstrap.php`) でファイルシステム上のフルパスを設定してください:
+`app/Config/bootstrap.php`) でファイルシステム上のフルパスを設定してください。
 
 ```php
 // entrypoints.json のファイルシステム上のフルパス
@@ -160,7 +160,7 @@ echo $this->Encore->script([
 
 ### `entryLinkTags($entryName, array $options = [])`
 
-`entrypoints.json` を読み込み、指定したエントリー (例えば `app` や `dashboard`) のすべての CSS
+`entrypoints.json` を読み込み、指定したエントリー (たとえば `app` や `dashboard`) のすべての CSS
 ファイルについて `<link>` タグを出力します。デフォルトではタグを `css` ビューブロックに追加します。
 タグを文字列として受け取るには `['inline' => true]` を渡してください。
 
@@ -197,7 +197,7 @@ $this->Encore->entryScriptTags('app');
 
 ## レイアウトの例
 
-`templates/Layouts/default.ctp` (レガシーレイアウトでは `app/View/Layouts/default.ctp`) で次のようにします:
+`templates/Layouts/default.ctp` (レガシーレイアウトでは `app/View/Layouts/default.ctp`) で次のようにします。
 
 ```php
 <!DOCTYPE html>
@@ -242,7 +242,7 @@ $this->Encore->entryScriptTags('app');
   使う場合は、JSON の出力を調整するか、それに合わせて `WebpackEncore.entrypointsPath` と
   `WebpackEncore.manifestPath` を設定してください。
 - ヘルパーは、最初にアセットが要求されたときに各 JSON ファイルを読み込み、そのリクエストの間は
-  キャッシュします。ヘルパーのロード時にはファイルは必要ありませんが、最初のビルドの前にアセットを
+  キャッシュします。ヘルパーの読み込み時にはファイルは必要ありませんが、最初のビルドの前にアセットを
   出力しようとすると、見つからないファイルの名前を含む `RuntimeException` がスローされます。
 
 <a id="origin"></a>
