@@ -223,3 +223,8 @@ In `templates/Layouts/default.ctp` (legacy layout: `app/View/Layouts/default.ctp
 - The helper reads each JSON file when an asset is first requested, and caches it for the rest
   of the request. Loading the helper does not require the files, but rendering an asset before
   the first build throws a `RuntimeException` that names the missing file.
+
+## Origin
+
+This package was created by [pieceofcake2](https://github.com/pieceofcake2), which also maintains
+it. It is not a fork of another project and is not based on one.
